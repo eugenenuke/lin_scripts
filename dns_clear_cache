@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Clears NetworkManager's (dnsmasq's) DNS cache
+#
+# v1.00	16.11.2017 by Evgeniy Yanuk
+#
+
+sudo dbus-send --system --dest=org.freedesktop.NetworkManager.dnsmasq /uk/org/thekelleys/dnsmasq uk.org.thekelleys.ClearCache

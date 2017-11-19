@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Extracts a range of pages from a pdf file.
+#
+# v1.00 19.11.2017 by Evgeniy Yanuk
+#
+
+if [ $# -ne 2 ]; then
+	echo "Usage: $0 <in.pdf> <start_page> <end_page>"
+	exit 1
+fi
+
+FPAGE=$2
+LPAGE=$3
+OFILE=${1%.pdf}_p$2-p$3.pdf
+
+PDFSETTINGS=/prepress
+#PDFSETTINGS=/default
+#PDFSETTINGS=/screen
+
+gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+	-dPDFSETTINGS=$PDFSETTINGS \
+	-dFirstPage=$FPAGE -dLastPage=$LPAGE \
+	-sOutputFile="$OFILE" "$1"

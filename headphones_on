@@ -1,0 +1,3 @@
+#!/bin/sh
+
+amixer set Headphone,0 100% unmute

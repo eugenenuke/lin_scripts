@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$EUID" -ne "0" ]; then
+	echo "Must be root!"
+	exit 1
+fi
+
+cd /storage/store/mail/vsv.lokos.net/
+
+echo "Before:"
+df -h /storage
+
+for i in `ls -d [^\#]*`
+do
+#	find $i/Junk\ E-mail/\#msgs $i/Deleted\ Items/\#msgs -type f -iname "*.eml" -mtime +31 -exec ls -l '{}' +
+	find $i/Junk\ E-mail/\#msgs $i/Deleted\ Items/\#msgs -type f -iname "*.eml" -mtime +31 -exec rm '{}' +
+done
+
+echo "After:"
+df -h /storage
